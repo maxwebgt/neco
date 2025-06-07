@@ -1,0 +1,55 @@
+# Зависимости
+app/node_modules
+app/npm-debug.log*
+app/yarn-debug.log*
+app/yarn-error.log*
+
+# Сборка
+app/dist
+app/build
+
+# Среда разработки
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Логи
+*.log
+logs
+
+# Кеш npm
+.npm
+
+# Временные файлы
+.nyc_output
+.cache
+.parcel-cache
+
+# IDE и редакторы
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS файлы
+.DS_Store
+Thumbs.db
+
+# Docker файлы
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# Документация
+README.md
+*.md
+
+# Скрипты
+*.bat
+*.sh 
