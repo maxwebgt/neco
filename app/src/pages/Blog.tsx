@@ -9,66 +9,80 @@ interface BlogPost {
   id: number;
   title: string;
   excerpt: string;
-  image: string;
+  imagePrompt: string;
   date: string;
+  dateFormatted: string;
   author: string;
+  readTime: string;
   tags: string[];
 }
 
 const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: "10 простых способов уменьшить количество пластика в вашем доме",
-    excerpt: "Узнайте, как легко и постепенно заменить пластиковые предметы в вашем доме на экологичные аналоги.",
-    image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?auto=format&fit=crop&q=80",
-    date: "15 апреля 2023",
-    author: "Екатерина",
-    tags: ["Пластик", "Советы", "Эко-привычки"]
+    title: "10 простых способов уменьшить количество пластика в доме",
+    excerpt: "Узнайте, как легко и постепенно заменить пластиковые предметы в вашем доме на экологичные аналоги без стресса и больших затрат.",
+    imagePrompt: "Экологичные альтернативы пластику, стеклянные контейнеры, многоразовые сумки, bamboo зубные щетки",
+    date: "2024-04-15",
+    dateFormatted: "15 апреля 2024",
+    author: "Екатерина Эколог",
+    readTime: "7 мин",
+    tags: ["Пластик", "Zero-waste", "Дом", "Советы"]
   },
   {
     id: 2,
-    title: "Как правильно сортировать мусор: подробное руководство",
-    excerpt: "Разбираемся в видах отходов и правилах их сортировки для максимально эффективной переработки.",
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&q=80",
-    date: "2 марта 2023",
-    author: "Михаил",
-    tags: ["Переработка", "Сортировка", "Руководство"]
+    title: "Как правильно сортировать мусор: подробное руководство 2024",
+    excerpt: "Разбираемся в видах отходов и правилах их сортировки для максимально эффективной переработки в современных условиях.",
+    imagePrompt: "Контейнеры для сортировки мусора разных цветов, знаки переработки, правильно отсортированные отходы",
+    date: "2024-03-02",
+    dateFormatted: "2 марта 2024",
+    author: "Михаил Сортировщик",
+    readTime: "9 мин",
+    tags: ["Переработка", "Сортировка", "Отходы", "Руководство"]
   },
   {
     id: 3,
     title: "Натуральная косметика: мифы и реальность",
     excerpt: "Разбираемся, что такое натуральная косметика, как её выбирать и почему она лучше для вас и планеты.",
-    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80",
-    date: "18 февраля 2023",
-    author: "Анна",
-    tags: ["Косметика", "Натуральное", "Красота"]
+    imagePrompt: "Натуральная косметика, твердые шампуни, органические ингредиенты, эко-упаковка",
+    date: "2024-02-18",
+    dateFormatted: "18 февраля 2024",
+    author: "Анна Красоткина",
+    readTime: "6 мин",
+    tags: ["Косметика", "Натуральное", "Красота", "Здоровье"]
   },
   {
     id: 4,
     title: "Как организовать zero-waste кухню",
     excerpt: "Практические советы по минимизации отходов на кухне и организации экологичного пространства.",
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80",
-    date: "5 января 2023",
-    author: "Дмитрий",
-    tags: ["Zero-waste", "Кухня", "Организация"]
+    imagePrompt: "Zero-waste кухня, стеклянные банки, многоразовые контейнеры, минимум упаковок",
+    date: "2024-01-05",
+    dateFormatted: "5 января 2024",
+    author: "Дмитрий Минималист",
+    readTime: "8 мин",
+    tags: ["Zero-waste", "Кухня", "Организация", "Минимализм"]
   },
   {
     id: 5,
     title: "Экологичная уборка: чем заменить бытовую химию",
     excerpt: "Простые и доступные средства для уборки дома, которые не наносят вред природе и вашему здоровью.",
-    image: "https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&q=80",
-    date: "20 декабря 2022",
-    author: "Ольга",
-    tags: ["Уборка", "Бытовая химия", "Натуральное"]
+    imagePrompt: "Натуральные чистящие средства, сода, уксус, лимон, эко-средства для уборки",
+    date: "2022-12-20",
+    dateFormatted: "20 декабря 2022",
+    author: "Ольга Чистюлина",
+    readTime: "5 мин",
+    tags: ["Уборка", "Бытовая химия", "Натуральное", "Здоровье"]
   },
   {
     id: 6,
     title: "Эко-подарки: идеи для осознанных презентов",
     excerpt: "Как выбрать подарок, который будет приятен близким и одновременно безопасен для окружающей среды.",
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&q=80",
-    date: "10 ноября 2022",
-    author: "Мария",
-    tags: ["Подарки", "Праздники", "Осознанность"]
+    imagePrompt: "Эко-подарки, подарки в крафтовой упаковке, растения, handmade подарки",
+    date: "2022-11-10",
+    dateFormatted: "10 ноября 2022",
+    author: "Мария Дарительница",
+    readTime: "6 мин",
+    tags: ["Подарки", "Праздники", "Осознанность", "Устойчивость"]
   }
 ];
 
@@ -98,16 +112,19 @@ const Blog = () => {
                 key={post.id}
                 className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col"
               >
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="h-48 w-full object-cover"
-                />
+                <div className="h-48 w-full bg-gray-100 flex items-center justify-center text-center p-4">
+                  <div className="text-sm text-gray-600">
+                    <strong>ПРОМТ ДЛЯ КАРТИНКИ:</strong><br/>
+                    {post.imagePrompt}
+                  </div>
+                </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center text-sm text-gray-500 mb-2">
-                    <span>{post.date}</span>
+                    <span>{post.dateFormatted}</span>
                     <span className="mx-2">•</span>
                     <span>{post.author}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.readTime}</span>
                   </div>
                   <h2 className="text-xl font-serif mb-3 text-eco-brown">
                     {post.title}

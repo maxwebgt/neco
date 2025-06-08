@@ -10,8 +10,14 @@ COPY app/package*.json ./
 # Установка зависимостей (включая dev для сборки)
 RUN npm ci && npm cache clean --force
 
-# Копирование исходного кода
-COPY app/ .
+# Копирование исходного кода (исключая node_modules)
+COPY app/src ./src
+COPY app/public ./public
+COPY app/*.json ./
+COPY app/*.js ./
+COPY app/*.ts ./
+COPY app/*.html ./
+COPY app/*.config.* ./
 
 # Сборка приложения для продакшена
 RUN npm run build

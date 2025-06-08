@@ -22,9 +22,6 @@ const Header = () => {
           <Link to="/catalog" className="text-eco-brown hover:text-eco-terracotta transition-colors duration-200">
             Каталог
           </Link>
-          <Link to="/about" className="text-eco-brown hover:text-eco-terracotta transition-colors duration-200">
-            О нас
-          </Link>
           <Link to="/mission" className="text-eco-brown hover:text-eco-terracotta transition-colors duration-200">
             Миссия
           </Link>

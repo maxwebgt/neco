@@ -3,6 +3,12 @@ app/node_modules
 app/npm-debug.log*
 app/yarn-debug.log*
 app/yarn-error.log*
+app/package-lock.json
+
+# ESLint и проблемные файлы
+**/@eslint/**
+**/eslint*
+**/.eslintrc*
 
 # Сборка
 app/dist
