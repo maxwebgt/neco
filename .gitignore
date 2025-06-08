@@ -1,0 +1,50 @@
+# Зависимости
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+*.tgz
+*.tar.gz
+
+# Логи
+logs
+*.log
+
+# Временные файлы
+.tmp
+.temp
+*.tmp
+*.swp
+*.swo
+
+# Переменные окружения (оставить .env для примера)
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Сборка
+dist/
+build/
+.next/
+out/
+
+# Docker
+.docker/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*.exe
+
+# История PowerShell
+.history/
+
+# Git
+*.orig 

@@ -2,13 +2,13 @@ services:
   # React приложение
   ecovery-app:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: ecovery-app
     ports:
       - "3000:80"
     environment:
-      - NODE_ENV=${NODE_ENV}
+      - NODE_ENV=${NODE_ENV:-production}
     depends_on:
       mongodb:
         condition: service_healthy
@@ -23,13 +23,13 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-ecoVery2024!}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE:-ecovery}
     volumes:
       - mongodb_data:/data/db
       - mongodb_logs:/var/log/mongodb
-      - ./mongodb/mongod.conf:/etc/mongod.conf:ro
+      - ../mongodb/mongod.conf:/etc/mongod.conf:ro
     command: mongod --config /etc/mongod.conf
     networks:
       - ecovery-network
@@ -48,11 +48,11 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
-      - ME_CONFIG_MONGODB_URL=${ME_CONFIG_MONGODB_URL}
-      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
-      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME:-admin}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD:-ecoVery2024!}
+      - ME_CONFIG_MONGODB_URL=${ME_CONFIG_MONGODB_URL:-mongodb://admin:ecoVery2024!@mongodb:27017/}
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME:-admin}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD:-mongoExpress2024!}
     depends_on:
       mongodb:
         condition: service_healthy
