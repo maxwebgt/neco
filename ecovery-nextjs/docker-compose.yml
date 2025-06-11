@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Next.js Full-Stack приложение (frontend + API)
+  nextjs-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URL=mongodb://mongodb:27017/ecovery
+    depends_on:
+      - mongodb
+    networks:
+      - ecovery-network
+
+  # MongoDB
+  mongodb:
+    image: mongo:7.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-data.js:/docker-entrypoint-initdb.d/init-data.js:ro
+    environment:
+      - MONGO_INITDB_DATABASE=ecovery
+    networks:
+      - ecovery-network
+
+  # Mongo Express (опционально для просмотра БД)
+  mongo-express:
+    image: mongo-express:1.0-20
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=pass
+    depends_on:
+      - mongodb
+    networks:
+      - ecovery-network
+
+networks:
+  ecovery-network:
+    driver: bridge
+
+volumes:
+  mongodb_data: 
