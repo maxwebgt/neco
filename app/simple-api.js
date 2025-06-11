@@ -43,6 +43,18 @@ app.get('/api/categories', async (req, res) => {
     }
 });
 
+app.get('/api/products/:slug', async (req, res) => {
+    try {
+        const product = await Product.findOne({ slug: req.params.slug });
+        if (!product) {
+            return res.status(404).json({ error: 'Товар не найден' });
+        }
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`🚀 API сервер запущен на http://localhost:${PORT}`);

@@ -2,8 +2,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
+  const { state } = useCart();
+
   return (
     <header className="sticky top-0 z-50 w-full bg-eco-milky shadow-sm">
       <div className="container flex h-16 items-center justify-between py-4">
@@ -45,9 +49,16 @@ const Header = () => {
           </Button>
           <Link 
             to="/cart" 
-            className="p-2 rounded-full bg-eco-green/10 hover:bg-eco-green/20 transition-colors"
+            className="relative p-2 rounded-full bg-eco-green/10 hover:bg-eco-green/20 transition-colors"
           >
             <ShoppingCart className="h-5 w-5 text-eco-green" />
+            {state.totalItems > 0 && (
+              <Badge 
+                className="absolute -top-2 -right-2 bg-eco-terracotta text-white text-xs min-w-[1.25rem] h-5 flex items-center justify-center p-0"
+              >
+                {state.totalItems}
+              </Badge>
+            )}
           </Link>
         </div>
       </div>

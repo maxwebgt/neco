@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Product {
   _id: string;
@@ -23,6 +25,8 @@ const FeaturedCatalog = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<Category>("all");
+  const { addItem } = useCart();
+  const { toast } = useToast();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,6 +47,21 @@ const FeaturedCatalog = () => {
   const filteredProducts = activeCategory === "all" 
     ? products 
     : products.filter(product => product.category === activeCategory);
+
+  const handleAddToCart = (product: Product) => {
+    addItem({
+      _id: product._id,
+      name: product.name,
+      slug: product.slug,
+      price: product.price,
+      mainImage: product.mainImage,
+    });
+
+    toast({
+      title: "Товар добавлен в корзину",
+      description: `${product.name} добавлен в корзину`,
+    });
+  };
 
   return (
     <section className="py-16">
@@ -121,6 +140,7 @@ const FeaturedCatalog = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
+                      onClick={() => handleAddToCart(product)}
                       className="border-eco-green text-eco-green hover:bg-eco-green hover:text-white"
                     >
                       <ShoppingCart className="h-4 w-4 mr-1" />
