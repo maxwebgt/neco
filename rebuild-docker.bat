@@ -1,13 +1,23 @@
 @echo off
-setlocal enabledelayedexpansion
-echo === Остановка и удаление контейнеров ===
-docker-compose -f docker/docker-compose.yml down -v
-echo === Удаление образов ===
-docker rmi ecovery-app:latest 2>nul
-docker image prune -f
-echo === Запуск сборки и запуска контейнеров ===
-docker-compose -f docker/docker-compose.yml up --build -d
-echo === Проверка статуса контейнеров ===
-docker-compose -f docker/docker-compose.yml ps
-echo === Просмотр логов ===
-docker-compose -f docker/docker-compose.yml logs 
+echo 🔄 Перезапуск ECO.VERY через Docker Compose...
+
+echo 📦 Останавливаем все сервисы...
+docker-compose down
+
+echo 🗑️ Удаляем старые образы...
+docker-compose down --rmi all
+
+echo 🏗️ Собираем и запускаем все сервисы...
+docker-compose up --build -d
+
+echo ⏳ Ждем запуска сервисов...
+timeout /t 10 /nobreak > nul
+
+echo ✅ ECO.VERY запущен!
+echo.
+echo 🌐 Сайт:          http://localhost
+echo 📡 API:           http://localhost:3001
+echo 🗄️  Mongo Express: http://localhost:8081
+echo.
+echo Нажмите любую клавишу для выхода...
+pause > nul 

@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # MongoDB база данных
+  mongo:
+    image: mongo:7
+    container_name: ecovery-mongo
+    environment:
+      MONGO_INITDB_DATABASE: ecovery
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - ecovery-network
+
+  # Mongo Express - веб интерфейс для MongoDB
+  mongo-express:
+    image: mongo-express:1.0.0
+    container_name: ecovery-mongo-express
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+    networks:
+      - ecovery-network
+
+  # API сервер
+  api:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.api
+    container_name: ecovery-api
+    environment:
+      MONGODB_URL: mongodb://mongo:27017/ecovery
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+    volumes:
+      - ./эковери:/app/эковери:ro
+      - ./товары_данные:/app/товары_данные:ro
+    restart: unless-stopped
+    networks:
+      - ecovery-network
+
+  # Фронтенд
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.frontend
+    container_name: ecovery-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - ecovery-network
+
+volumes:
+  mongo_data:
+
+networks:
+  ecovery-network:
+    driver: bridge 

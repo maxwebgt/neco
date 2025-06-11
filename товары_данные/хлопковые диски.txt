@@ -1,0 +1,4 @@
+Product: хлопковые диски
+Price: NO DATA
+Description: NO DATA
+Status: Missing description file
